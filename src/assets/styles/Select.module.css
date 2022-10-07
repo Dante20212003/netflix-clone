@@ -1,0 +1,28 @@
+.select_container {
+    position: relative;
+}
+
+.select_container svg {
+    position: absolute;
+    left: .8rem;
+    top: .8rem;
+
+}
+
+.select {
+    outline: unset;
+    background-color: transparent;
+    border-color: 1px solid #FFF;
+    color: #fff;
+    font-size: 1.6rem;
+    border-radius: 0.2rem;
+    padding: .5rem .5rem .5rem 2rem;
+    font-size: 1.4rem;
+}
+
+
+@media (min-width: 550px) {
+    .select {
+        padding: .5rem .8rem .5rem 2rem;
+    }
+}

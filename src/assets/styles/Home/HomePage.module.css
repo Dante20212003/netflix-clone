@@ -1,0 +1,196 @@
+.netflix_banner {
+    background-image: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .5) 50%, rgba(0, 0, 0, 1) 100%),
+        url('/img/netflix_background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 55rem;
+    border-bottom: .8rem solid #222;
+}
+
+@media (min-width: 550px) {
+    .netflix_banner {
+        height: 100vh;
+    }
+}
+
+.header {
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.netlix_logo {
+    cursor: pointer;
+    width: 8.8rem;
+}
+
+@media (min-width: 850px) {
+    .netlix_logo {
+        width: 13.4rem;
+    }
+}
+
+.header_actions {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+}
+
+@media (min-width: 550px) {
+    .header_actions {
+        gap: 2.5rem;
+    }
+}
+
+.header_actions::before {
+    position: absolute;
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-image: url('https://img.icons8.com/ios-filled/50/FFFFFF/geography.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    left: .8rem;
+    top: .8rem;
+}
+
+
+.select {
+    outline: unset;
+    background-color: transparent;
+    border-color: 1px solid #FFF;
+    color: #fff;
+    font-size: 1.6rem;
+    border-radius: 0.2rem;
+    padding: .5rem .5rem .5rem 2rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+
+@media (min-width: 550px) {
+    .select {
+        padding: .5rem .8rem .5rem 2rem;
+    }
+}
+
+.button {
+    border: unset;
+    border-radius: .3rem;
+    background-color: #E50914;
+    color: #FFF;
+    padding: .5rem 1rem;
+    font-size: 1.44rem;
+    cursor: pointer;
+    font-weight: 100;
+}
+
+@media (min-width: 550px) {
+    .button {
+        font-size: 1.6rem;
+        padding: .5rem 1.6rem;
+    }
+}
+
+.info {
+    color: #FFF;
+    display: grid;
+    place-content: center;
+    height: calc(100% - 8rem);
+    height: calc(100% - 8rem);
+}
+
+.container_info {
+    width: 90%;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+@media (min-width: 550px) {
+    .container_info {
+        width: 60%;
+        max-width: 95rem;
+    }
+}
+
+.info_content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+}
+
+.info_content h1 {
+    font-weight: bold;
+    font-size: 2.7rem;
+}
+
+@media (min-width: 550px) {
+    .info_content h1 {
+        font-size: 5rem;
+    }
+}
+
+.info_content p {
+    font-size: 1.8rem;
+}
+
+@media (min-width: 550px) {
+    .info_content p {
+        font-size: 2.6rem;
+    }
+
+    .info_content :nth-child(3) {
+        font-size: 1.92rem;
+    }
+}
+
+.info_actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+@media (min-width: 950px) {
+    .info_actions {
+        flex-direction: row;
+        gap: unset;
+    }
+}
+
+.info_input {
+    outline: unset;
+    padding: 1rem;
+    width: 100%;
+    font-size: 1.4rem;
+}
+
+@media (min-width: 950px) {
+    .info_input {
+        padding: 2rem 1rem;
+    }
+}
+
+.info_button {
+    border: unset;
+    background-color: #E50914;
+    color: #FFF;
+    padding: 1rem 1.5rem;
+    width: fit-content;
+    font-size: 1.6rem;
+    border-radius: .4rem;
+}
+
+@media (min-width: 950px) {
+    .info_button {
+        border-radius: 0;
+        border-top-right-radius: .4rem;
+        border-bottom-right-radius: .4rem;
+        font-size: 2.6rem;
+        height: 100%;
+    }
+}

@@ -1,0 +1,74 @@
+.header {
+    padding: .2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.headerContainer {
+    width: 90%;
+    max-width: 120rem;
+    margin: 0 auto;
+
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.netlix_logo {
+    cursor: pointer;
+    width: 8.8rem;
+    margin: -5rem 0 -5rem 0;
+
+}
+
+@media (min-width: 550px) {
+    .netlix_logo {
+        width: 15rem;
+        margin: -2rem 0 -2rem 0;
+    }
+}
+
+.header_actions {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+}
+
+@media (min-width: 550px) {
+    .header_actions {
+        gap: 2.5rem;
+    }
+}
+
+.header_actions::before {
+    position: absolute;
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-image: url('https://img.icons8.com/ios-filled/50/FFFFFF/geography.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    left: .8rem;
+    top: .8rem;
+}
+
+.link {
+    font-size: 1.4rem;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+@media (min-width: 550px) {
+    .link {
+        font-size: 1.9rem;
+    }
+}

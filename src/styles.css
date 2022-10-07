@@ -1,0 +1,72 @@
+@font-face {
+  font-family: NetflixSans;
+  font-weight: 200;
+  src: url("/fonts/NetflixSans-Light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: NetflixSans;
+  font-weight: 400;
+  src: url("/fonts/NetflixSans-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: NetflixSans;
+  font-weight: 600;
+  src: url("/fonts/NetflixSans-Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: NetflixSans;
+  font-weight: 900;
+  src: url("/fonts/NetflixSans-Bold.otf") format("opentype");
+}
+
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+
+}
+
+*,
+:after,
+:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit
+}
+
+* {
+  font-family: NetflixSans, Arial, Helvetica, sans-serif;
+  font-weight: 100
+}
+
+body {
+  font-family: NetflixSans, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  /* Hide horizontal scrollbar */
+}
+
+.container {
+  width: 90%;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+video {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+}
