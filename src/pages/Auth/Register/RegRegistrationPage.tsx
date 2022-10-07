@@ -17,7 +17,7 @@ export const RegRegistrationPage = () => {
           Netflix en cualquier dispositivo, cuando quieras.
         </p>
 
-        <Link to="/signup/planform">
+        <Link to="/signup/regform">
           <Button>Siguiente</Button>
         </Link>
       </div>
