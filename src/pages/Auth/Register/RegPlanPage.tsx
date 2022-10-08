@@ -161,14 +161,14 @@ export const RegPlanPage = () => {
           </table>
         </div>
 
-        <small>
+        <small className={styles.small}>
           La disponibilidad del contenido en HD (720p), Full HD (1080p), Ultra
           HD (4K) y HDR depende de tu servicio de internet y del dispositivo en
           uso. No todo el contenido está disponible en todas las resoluciones.
           Consulta nuestros <span>Términos de uso</span> para obtener más
           información.
         </small>
-        <small>
+        <small className={styles.small}>
           Solo las personas que vivan contigo pueden usar tu cuenta. Puedes ver
           Netflix en 4 dispositivos distintos al mismo tiempo con el plan
           Premium, en 2 con el plan Estándar y en 1 con el plan Básico.

@@ -119,16 +119,16 @@
 
 
 
-small span:not(:last-child) {
+.small span:not(:last-child) {
     color: #0071eb;
     font-weight: normal;
 }
 
-small span:not(:last-child):hover {
+.small span:not(:last-child):hover {
     text-decoration: underline;
 }
 
-small span:last-child {
+.small span:last-child {
     color: #8c8c8c;
     font-weight: bold;
 }

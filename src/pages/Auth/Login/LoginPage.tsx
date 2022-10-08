@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 const formValidate = {
   email: {
-    required: "El email es obligatoria",
+    required: "El email es obligatorio",
     pattern: {
       value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
       message: "Escribe una dirección de email válida.",

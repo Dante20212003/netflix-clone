@@ -184,7 +184,7 @@ input[type="radio"]:checked+.plan::before {
     color: #E50914 !important;
 }
 
-small {
+.small {
     max-width: 73rem;
     display: block;
     font-size: 1.3rem;
@@ -192,7 +192,7 @@ small {
     margin-top: 1rem;
 }
 
-small span {
+.small span {
     color: #0071eb;
 }
 

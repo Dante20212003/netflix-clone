@@ -73,6 +73,10 @@ export const RegCreditoPage = () => {
     setValue("nroTarjeta", formatCard(watch().nroTarjeta));
   }, [watch().nroTarjeta]);
 
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
+
   return (
     <>
       <div className={styles.container}>
@@ -148,7 +152,7 @@ export const RegCreditoPage = () => {
                 required
                 autoComplete="off"
                 {...register("fechaVencimiento", {
-                  ...formValidate.nroTarjeta,
+                  ...formValidate.fechaVencimiento,
                   onChange: (e) => {
                     const cleanValue = e.target.value
                       .replace(/^([1-9]\/|[2-9])$/g, "0$1/")
@@ -159,8 +163,15 @@ export const RegCreditoPage = () => {
                       .replace(/^([0]{1,})\/|[0]{1,}$/g, "0")
                       .replace(/[^\d\/]|^[\/]{0,}$/g, "")
                       .replace(/\/\//g, "/");
-                    console.log(cleanValue);
+
                     setValue("fechaVencimiento", cleanValue);
+
+                    if (e.target.value.length >= 5) {
+                      setValue(
+                        "fechaVencimiento",
+                        e.target.value.substring(0, 5)
+                      );
+                    }
                   },
                 })}
               />
@@ -185,7 +196,16 @@ export const RegCreditoPage = () => {
                 type="text"
                 required
                 autoComplete="off"
-                {...register("cvv", formValidate.cvv)}
+                {...register("cvv", {
+                  ...formValidate.cvv,
+                  onChange: (e) => {
+                    if (e.target.value.length <= 3) {
+                      setValue("cvv", e.target.value);
+                    } else {
+                      setValue("cvv", watch().cvv.substring(0, 3));
+                    }
+                  },
+                })}
               />
               <label className={styles.label}>Codigo de seguridad (CVV)</label>
             </div>
@@ -203,12 +223,12 @@ export const RegCreditoPage = () => {
             <Link to="/signup/planform">Cambiar</Link>
           </div>
 
-          <small>
+          <small className={styles.small}>
             Los pagos se procesarán internacionalmente. Es posible que se
             apliquen comisiones bancarias adicionales.
           </small>
 
-          <small>
+          <small className={styles.small}>
             Al hacer clic en el botón Iniciar membresía, aceptas nuestros{" "}
             <span>Términos de uso</span> y nuestra{" "}
             <span>Declaración de privacidad</span>, declaras que tienes más de
