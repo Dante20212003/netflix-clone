@@ -67,6 +67,7 @@
 }
 
 .info_button {
+    position: relative;
     cursor: pointer;
     border: unset;
     background-color: #E50914;
@@ -86,5 +87,65 @@
         height: 100%;
         padding: 1.1rem 1.5rem;
 
+    }
+}
+
+.info_button:disabled span {
+    visibility: hidden;
+}
+
+.info_button:disabled {
+    cursor: default;
+}
+
+.info_button:disabled::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 0.4;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.info_button:disabled::after {
+    content: "";
+    background-image: url(https://assets.nflxext.com/en_us/pages/wiplayer/site-spinner.png);
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    position: absolute;
+    animation: nfLoader-spin 1.1s linear infinite, 1 !important;
+    -webkit-animation: nfLoader-spin 1.1s linear infinite, 1 !important;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 2rem;
+    height: 2rem;
+}
+
+@media (min-width: 950px) {
+    .info_button:disabled::after {
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+@keyframes nfLoader-spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes nfLoader-spin {
+    100% {
+        -webkit-transform: rotate(360deg);
     }
 }

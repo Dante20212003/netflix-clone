@@ -1,7 +1,10 @@
-import styles from "@/assets/styles/Home/SuscriptionHomePage.module.css";
-import { Input } from "@/components";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { Input } from "@/components";
+import styles from "@/assets/styles/Home/SuscriptionHomePage.module.css";
+import { setEmail } from "@/store/auth/authSlice";
+import { useEffect } from "react";
+import { useAuth } from "@/hooks";
 
 type FormValues = {
   email: string;
@@ -10,14 +13,23 @@ type FormValues = {
 
 export const SuscriptionHomePage = ({ small }: { small?: boolean }) => {
   const navigate = useNavigate();
+
+  const { isLoading, onSetEmail } = useAuth();
+
   const { handleSubmit, control } = useForm<FormValues>({
     defaultValues: {
-      email: "",
+      email: localStorage.email || "",
     },
     mode: "onChange",
   });
 
-  const onSubmit = (data: FormValues) => navigate("/signup/registration");
+  const onSubmit = (data: FormValues) => {
+    onSetEmail(data.email);
+
+    /* dispatch(setEmail(data.email)); */
+    /* navigate("/signup/registration"); */
+  };
+
   return (
     <div className={`${styles.info_content} ${small ? styles.small : ""}`}>
       {small ?? (
@@ -50,8 +62,12 @@ export const SuscriptionHomePage = ({ small }: { small?: boolean }) => {
             />
           </div>
 
-          <button type="submit" className={styles.info_button}>
-            Comenzar
+          <button
+            disabled={isLoading}
+            type="submit"
+            className={styles.info_button}
+          >
+            <span>Comenzar</span>
           </button>
         </div>
       </form>

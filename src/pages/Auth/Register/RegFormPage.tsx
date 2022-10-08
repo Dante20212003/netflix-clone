@@ -1,10 +1,10 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Footer, Input } from "@/components";
-import { Header } from "./views/Header";
-import styles from "@/assets/styles/Auth/RegRegistrationPage.module.css";
+import { useSelector } from "react-redux";
 import { Button } from "@/styled-components";
+import styles from "@/assets/styles/Auth/RegRegistrationPage.module.css";
+import { RootState } from "@/store";
+import { useAuth } from "@/hooks";
 
 const formValidate = {
   email: {
@@ -34,21 +34,26 @@ const formValidate = {
     },
   },
 };
+
 export const RegFormPage = () => {
   const navigate = useNavigate();
+
+  const { isLoading, onSetEmailPassword } = useAuth();
+  const { email } = useSelector((state: RootState) => state.auth);
 
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm<{ email: string; password: string }>({
+    defaultValues: {
+      email: email || localStorage.email || "",
+    },
     mode: "onChange",
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-    /* TODO: REALIZAR LA CREACION DE CUENTA */
-    navigate("/signup");
+  const onSubmit = (data: { email: string; password: string }) => {
+    onSetEmailPassword(data);
   };
 
   return (
@@ -83,7 +88,7 @@ export const RegFormPage = () => {
             <div className={styles.form_group}>
               <input
                 className={styles.input}
-                type="text"
+                type="password"
                 required
                 autoComplete="off"
                 {...register("password", formValidate.password)}
@@ -95,7 +100,9 @@ export const RegFormPage = () => {
             )}
           </div>
 
-          <Button type="submit">Siguiente</Button>
+          <Button disabled={isLoading} type="submit">
+            Siguiente
+          </Button>
         </form>
       </div>
     </>

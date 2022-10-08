@@ -13,8 +13,6 @@ import styles from "@/assets/styles/Home/MainHomePage.module.css";
 export const Main = () => {
   return (
     <main style={{ backgroundColor: "#000" }}>
-      {/*  <Input placeholder="hola"/> */}
-      
       {sectionContent.map((item) => (
         <div style={{ borderBottom: "0.8rem solid #222" }} key={item.title}>
           <SectionHomePage reverse_item={item.reverse_item}>

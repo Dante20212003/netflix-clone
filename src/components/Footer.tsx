@@ -3,14 +3,15 @@ import { Select } from "./Select";
 
 interface Props {
   register?: boolean;
+  login?: boolean;
 }
 
-export const Footer = ({ register = false }: Props) => {
+export const Footer = ({ register = false, login = false }: Props) => {
   return (
     <div
       className={styles.footer}
       style={{
-        backgroundColor: register ? "#F3F3F7" : "",
+        backgroundColor: register ? "#F3F3F7" : login ? "rgb(0,0,0,.7)" : "",
       }}
     >
       <p className={styles.footer_header}>
@@ -52,7 +53,7 @@ export const Footer = ({ register = false }: Props) => {
         </div>
       </div>
 
-      <Select register={register} />
+      <Select register={register} login={login}/>
 
       <p className={styles.footer_netflix}>Netflix Bolivia</p>
     </div>

@@ -1,19 +1,27 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
+interface Props {
+  padding?: number[];
+  login?: boolean;
+}
+
+export const Button = styled.button<Props>`
   margin-top: 5rem;
   position: relative;
   width: 100%;
   border: unset;
   border-radius: 0.3rem;
-  background-color: #fff;
   background-color: #e50914;
   color: #fff;
-  padding: 2rem 1rem;
+  padding: ${(props) => props.padding?.[0]}rem
+    ${(props) => props.padding?.[0]}rem;
   font-size: 2.44rem;
   cursor: pointer;
   font-weight: 100;
 
+  &:disabled span {
+    ${(props) => props.login && "visibility: hidden;"}
+  }
   &:disabled {
     cursor: default;
   }
@@ -23,7 +31,10 @@ export const Button = styled.button`
     content: "";
     width: 100%;
     height: 100%;
-    background-color: #fff;
+    /* background-color: rgb(255, 255, 255, 0.1); */
+    background-color: ${(props) =>
+      props.login ? "rgba(0, 0, 0, 0.9)" : "#fff"};
+    /*   background-color: #fff; */
     opacity: 0.4;
     top: 0;
     bottom: 0;
@@ -41,8 +52,9 @@ export const Button = styled.button`
     -o-background-size: 100%;
     background-size: 100%;
     position: absolute;
-    width: 4rem;
-    height: 4rem;
+
+    width: ${(props) => (props.login ? "2rem" : "4rem")};
+    height: ${(props) => (props.login ? "2rem" : "4rem")};
     animation: nfLoader-spin 1.1s linear infinite, 1 !important;
     -webkit-animation: nfLoader-spin 1.1s linear infinite, 1 !important;
     margin-left: auto;
@@ -63,3 +75,7 @@ export const Button = styled.button`
     }
   }
 `;
+
+Button.defaultProps = {
+  padding: [2, 1],
+};

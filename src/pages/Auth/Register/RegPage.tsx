@@ -1,10 +1,14 @@
-import React from "react";
+import { Link, Navigate } from "react-router-dom";
 import { AiOutlineCheckCircle, AiOutlineCheck } from "react-icons/ai";
-import { Header } from "./views/Header";
-import styles from "@/assets/styles/Auth/RegPage.module.css";
-import { Link } from "react-router-dom";
 import { Button } from "@/styled-components";
+import styles from "@/assets/styles/Auth/RegPage.module.css";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
+
 export const RegPage = () => {
+  const { email } = useSelector((state: RootState) => state.auth);
+  if (!email && !localStorage.email) return <Navigate to="/signup/regform" />;
+
   return (
     <>
       <div className={styles.container}>

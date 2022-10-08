@@ -1,0 +1,106 @@
+.accordion {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+}
+
+.accordion__item {
+    margin-bottom: 6px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.accordion__button {
+
+    background-color: #303030;
+    color: #FFF;
+    cursor: pointer;
+    padding: 9px 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.8rem;
+}
+
+@media (min-width:550px) {
+
+    .accordion__button {
+
+        font-size: 2rem;
+    }
+}
+
+@media (min-width:950px) {
+
+    .accordion__button {
+        padding: 15px 25px;
+        font-size: 2.6rem;
+    }
+}
+
+.accordion__button::after {
+
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding-top: -10px;
+
+    background:
+        linear-gradient(#FFF 0 0),
+        linear-gradient(#FFF 0 0);
+    background-position: center;
+    background-size: 50% 2px, 2px 50%;
+    /*thickness = 2px, length = 50% (25px)*/
+    background-repeat: no-repeat;
+}
+
+@media (min-width:950px) {
+
+    .accordion__button::after {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.accordion__button[aria-expanded='true']::after,
+.accordion__button[aria-selected='true']::after {
+    transform: rotate(45deg);
+}
+
+[hidden] {
+    display: none;
+}
+
+.accordion__panel {
+    margin-top: 2px;
+    padding: 20px;
+    font-size: 1.8rem;
+    animation: fadein 0.35s ease-in;
+    background-color: #303030;
+    color: #FFF;
+}
+
+@media (min-width:550px) {
+
+    .accordion__panel {
+
+        font-size: 2rem;
+    }
+}
+
+/* -------------------------------------------------- */
+/* ---------------- Animation part ------------------ */
+/* -------------------------------------------------- */
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

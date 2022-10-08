@@ -1,19 +1,23 @@
 import { useState } from "react";
-import { Header } from "./views/Header";
 import { AiOutlineCheck } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import styles from "@/assets/styles/Auth/RegPlanPage.module.css";
-import { Footer } from "@/components";
-import { plans } from "@/data";
+import { useAuth } from "@/hooks";
 import { Button } from "@/styled-components";
+import { plans } from "@/data";
+import styles from "@/assets/styles/Auth/RegPlanPage.module.css";
 
 export const RegPlanPage = () => {
-  const [plan, setPlan] = useState("basico");
+  const [plan, setPlan] = useState<"basico" | "estandar" | "premium">(
+    localStorage.plan || "basico"
+  );
   const { basico, estandar, premium } = plans;
+
+  const { isLoading, onSetPlan } = useAuth();
+
+  const handleSelectPlan = () => {
+    onSetPlan(plan);
+  };
   return (
     <>
-
-
       <div className={styles.container}>
         <span>Paso 1 de 3</span>
 
@@ -169,11 +173,11 @@ export const RegPlanPage = () => {
           Netflix en 4 dispositivos distintos al mismo tiempo con el plan
           Premium, en 2 con el plan Estándar y en 1 con el plan Básico.
         </small>
-        <Link to="/signup/paymentPicker">
-          <Button>Siguiente</Button>
-        </Link>
-      </div>
 
+        <Button disabled={isLoading} onClick={handleSelectPlan}>
+          Siguiente
+        </Button>
+      </div>
     </>
   );
 };

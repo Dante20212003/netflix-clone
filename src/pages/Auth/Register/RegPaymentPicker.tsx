@@ -1,18 +1,17 @@
-import React from "react";
+import { useSelector } from "react-redux";
 import { AiOutlineLock, AiOutlineCheck, AiOutlineRight } from "react-icons/ai";
 import { RiVisaFill } from "react-icons/ri";
 import { FaCcMastercard } from "react-icons/fa";
 import { SiAmericanexpress } from "react-icons/si";
-
-import { Header } from "./views/Header";
-import styles from "@/assets/styles/Auth/RegPaymentPicker.module.css";
-import { Link } from "react-router-dom";
+import { RootState } from "@/store";
 import { plans } from "@/data";
-import { Footer } from "@/components";
+import styles from "@/assets/styles/Auth/RegPaymentPicker.module.css";
+import { useAuth } from "@/hooks";
+
 export const RegPaymentPicker = () => {
-  /* TODO: AUTOMATIC DATA PLAN */
-  const planSeleccionado = "premium";
-  const planActual = plans[planSeleccionado];
+  const { isLoading, onPayment } = useAuth();
+  const { plan } = useSelector((state: RootState) => state.auth);
+  const planActual = plans[plan];
 
   return (
     <>
@@ -51,7 +50,12 @@ export const RegPaymentPicker = () => {
           <p>Cancela online fácilmente y cuando lo desees</p>
         </div>
 
-        <Link to="/signup/creditoption" className={styles.payment}>
+        <button
+          disabled={isLoading}
+          className={styles.payment}
+          onClick={() => onPayment()}
+        >
+          <p className={styles.textHelp}>Encriptado de extremo a extremo. 🔒</p>
           <div className={styles.methods}>
             <p>Tarjeta de credito o debito</p>
             <div>
@@ -62,7 +66,7 @@ export const RegPaymentPicker = () => {
           </div>
 
           <AiOutlineRight size={30} color="ccc" />
-        </Link>
+        </button>
       </div>
     </>
   );

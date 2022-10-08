@@ -1,6 +1,6 @@
 import { Header, Main } from "./views";
 import { Footer } from "@/components/Footer";
-import "react-accessible-accordion/dist/fancy-example.css";
+import "@/assets/styles/Accordion.css";
 
 export const HomePage = () => {
   return (

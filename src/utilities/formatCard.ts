@@ -11,3 +11,13 @@ export const formatCard = (value: any) => {
 
   return parts.length > 1 ? parts.join(" ") : value;
 };
+
+export const formatDateCard = (value: string) => {
+  return value;
+  /*  
+  const v = value.split("");
+
+  v.splice(2, 0, "/");
+
+  return v.join(""); */
+};

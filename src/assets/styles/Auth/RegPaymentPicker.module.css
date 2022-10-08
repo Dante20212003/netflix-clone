@@ -3,8 +3,6 @@
     max-width: 44rem;
     margin: 0 auto;
     padding: 4rem 0;
-
-
 }
 
 
@@ -19,8 +17,6 @@
         display: block;
         margin-bottom: 2rem;
     }
-
-
 }
 
 
@@ -45,7 +41,6 @@
 }
 
 .plans {
-
     display: flex;
     gap: 1rem;
     align-items: center;
@@ -71,6 +66,7 @@
 }
 
 .payment {
+    cursor: pointer;
     margin-top: 5rem;
     position: relative;
     padding: 2rem 2rem;
@@ -83,10 +79,11 @@
     font-size: 1.6rem;
     text-decoration: none;
     margin-bottom: 15rem;
+    background-color: transparent;
+    width: 100%;
 }
 
-.payment::after {
-    content: 'Encriptado de extremo a extremo. 🔒';
+.textHelp {
     position: absolute;
     top: -2.6rem;
     right: 0;
@@ -99,7 +96,64 @@
     gap: 1rem;
 }
 
+@media (min-width: 550px) {
+    .methods {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
 .methods div {
     display: flex;
     gap: 1rem;
+}
+
+
+.payment:disabled {
+    cursor: default;
+}
+
+.payment:disabled::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.4;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.payment:disabled::after {
+    content: "";
+    background-image: url(https://assets.nflxext.com/en_us/pages/wiplayer/site-spinner.png);
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    position: absolute;
+    animation: nfLoader-spin 1.1s linear infinite, 1 !important;
+    -webkit-animation: nfLoader-spin 1.1s linear infinite, 1 !important;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 4rem;
+    height: 4rem;
+}
+
+@keyframes nfLoader-spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes nfLoader-spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }

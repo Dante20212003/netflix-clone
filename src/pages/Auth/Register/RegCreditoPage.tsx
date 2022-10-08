@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Footer, Input } from "@/components";
-import { Header } from "./views/Header";
-import styles from "@/assets/styles/Auth/RegCreditoPage.module.css";
-import { formatCard } from "@/utilities";
-import { plans } from "@/data";
+import { useAuth } from "@/hooks";
 import { Button } from "@/styled-components";
+import { RootState } from "@/store";
+import { plans } from "@/data";
+import { formatCard, formatDateCard } from "@/utilities";
+import styles from "@/assets/styles/Auth/RegCreditoPage.module.css";
 
 const formValidate = {
   nombre: {
@@ -24,6 +25,10 @@ const formValidate = {
   },
   fechaVencimiento: {
     required: "Ingresa un mes de vencimiento.",
+    pattern: {
+      value: /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/,
+      message: "Ingresa un mes de vencimiento.",
+    },
   },
   cvv: {
     required: "Ingresa un código de seguridad (CVV).",
@@ -41,11 +46,14 @@ interface FormValues {
   fechaVencimiento: string;
   cvv: string;
 }
+
 export const RegCreditoPage = () => {
   const navigate = useNavigate();
 
-  const planSeleccionado = "premium";
-  const planActual = plans[planSeleccionado];
+  const { isLoading, onCompleteRegister } = useAuth();
+
+  const { plan } = useSelector((state: RootState) => state.auth);
+  const planActual = plans[plan];
 
   const {
     register,
@@ -58,9 +66,7 @@ export const RegCreditoPage = () => {
   });
 
   const onSubmit = (data: any) => {
-    console.log(data);
-    /* TODO: REALIZAR LA CREACION DE CUENTA */
-    navigate("/signup");
+    onCompleteRegister();
   };
 
   useEffect(() => {
@@ -141,9 +147,26 @@ export const RegCreditoPage = () => {
                 type="text"
                 required
                 autoComplete="off"
-                {...register("fechaVencimiento", formValidate.fechaVencimiento)}
+                {...register("fechaVencimiento", {
+                  ...formValidate.nroTarjeta,
+                  onChange: (e) => {
+                    const cleanValue = e.target.value
+                      .replace(/^([1-9]\/|[2-9])$/g, "0$1/")
+                      .replace(/^(0[1-9]{1}|1[0-2]{1})$/g, "$1/")
+                      .replace(/^([0-1]{1})([3-9]{1})$/g, "0$1/$2")
+                      .replace(/^(\d)\/(\d\d)$/g, "0$1/$2")
+                      .replace(/^(0?[1-9]{1}|1[0-2]{1})([0-9]{2})$/g, "$1/$2")
+                      .replace(/^([0]{1,})\/|[0]{1,}$/g, "0")
+                      .replace(/[^\d\/]|^[\/]{0,}$/g, "")
+                      .replace(/\/\//g, "/");
+                    console.log(cleanValue);
+                    setValue("fechaVencimiento", cleanValue);
+                  },
+                })}
               />
-              <label className={styles.label}>Fecha de vencimiento</label>
+              <label className={styles.label}>
+                Fecha de vencimiento (MM/YY)
+              </label>
             </div>
             {!!errors.fechaVencimiento && (
               <p className={styles.error_input}>
@@ -200,7 +223,9 @@ export const RegCreditoPage = () => {
             Para hacerlo, ve a Cuenta y haz clic en Cancelar membresía.
           </small>
 
-          <Button type="submit">Iniciar membresia</Button>
+          <Button disabled={isLoading} type="submit">
+            Iniciar membresia
+          </Button>
         </form>
       </div>
     </>
