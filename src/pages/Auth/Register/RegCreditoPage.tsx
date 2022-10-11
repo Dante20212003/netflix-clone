@@ -69,7 +69,7 @@ export const RegCreditoPage = () => {
   });
 
   const onSubmit = (data: any) => {
-    onCompleteRegister();
+    onCompleteRegister(data);
   };
 
   useEffect(() => {

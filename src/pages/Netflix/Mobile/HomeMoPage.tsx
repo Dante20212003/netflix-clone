@@ -1,7 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Header } from "./views/Header";
 import { ListMovies } from "../components/ListMovies";
 import styles from "@/assets/styles/Netflix/Mobile/HomeMoPage.module.css";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 const categorias = [
   {
@@ -64,6 +66,12 @@ const categorias = [
 
 const HomeMoPage = () => {
   const navigate = useNavigate();
+
+  const {
+    user: { profile },
+  } = useSelector((state: RootState) => state.auth);
+
+  if (!profile) return <Navigate to="/selectProfile" />;
 
   return (
     <div className={styles.container}>

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { AppDispatch } from "@/store";
-import { setLogout, setChecking, setLogin } from "@/store/auth";
+import { setLogout, setChecking, setLogin, setProfile } from "@/store/auth";
 
 export const useAuth = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,8 +13,15 @@ export const useAuth = () => {
     dispatch(setChecking());
     setTimeout(() => {
       if (!localStorage.token) return dispatch(setLogout());
+
       navigate("/selectProfile");
-      dispatch(setLogin({ email: "dante@gmail.com", name: "Dante" }));
+
+      const user = {
+        name: localStorage.name || "User",
+        email: localStorage.email || "user@user.com",
+      };
+
+      dispatch(setLogin(user));
     }, 3000);
   };
 
@@ -23,19 +30,27 @@ export const useAuth = () => {
 
     setTimeout(() => {
       setIsLoading(false);
-      navigate("/selectProfile");
 
-      localStorage.setItem("token", "1285882883989");
+      localStorage.setItem("token", crypto.randomUUID.toString());
 
-      const user = { name: "Dante", email: "dante@gmail.com" };
+      const user = {
+        name: localStorage.name || "User",
+        email: localStorage.email || "user@user.com",
+      };
 
       dispatch(setLogin(user));
+      navigate("/selectProfile");
     }, 3000);
+  };
+
+  const onSetProfile = (profile: string) => {
+    dispatch(setProfile(profile));
   };
 
   return {
     isLoading,
     onCheckToken,
     onLogin,
+    onSetProfile,
   };
 };

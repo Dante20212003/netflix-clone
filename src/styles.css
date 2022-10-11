@@ -42,17 +42,12 @@ html {
   font-weight: 100
 }
 
-html,
-body {
-
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-
-}
 
 body {
   font-family: NetflixSans, Arial, Helvetica, sans-serif;
   font-weight: bold;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 

@@ -1,17 +1,19 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { AppDispatch } from "@/store";
+import { AppDispatch, RootState } from "@/store";
 import {
   setEmail,
   setEmailPassword,
   setPlan,
 } from "@/store/auth/registerSlice";
+import { setLogin } from "@/store/auth";
 
 export const useRegister = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  const { email } = useSelector((state: RootState) => state.register);
   const dispatch = useDispatch<AppDispatch>();
 
   const onSetPlan = (plan: "basico" | "estandar" | "premium") => {
@@ -34,12 +36,16 @@ export const useRegister = () => {
     }, 2000);
   };
 
-  const onCompleteRegister = () => {
+  const onCompleteRegister = (data: any) => {
     setIsLoading(true);
+    localStorage.setItem("name", data.nombre);
+    console.log(crypto.randomUUID());
+    localStorage.setItem("token", crypto.randomUUID());
+
     setTimeout(() => {
       setIsLoading(false);
 
-      navigate("/login");
+      dispatch(setLogin({ name: data.nombre, email }));
     }, 2000);
   };
 

@@ -9,6 +9,7 @@ interface Props {
 }
 export const Profile = ({ img, name }: Props) => {
   const navigate = useNavigate();
+
   return (
     <div className={styles.container}>
       <img

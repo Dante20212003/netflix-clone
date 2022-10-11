@@ -5,7 +5,7 @@ import styles from "@/assets/styles/Netflix/Mobile/ProfileMoPage.module.css";
 import { Profile } from "../components/Profile";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-import { useItem } from "@/hooks";
+import { useItem, useAuth } from "@/hooks";
 import { useNetflix } from "@/hooks/useNetflix";
 
 const ProfileMoPage = () => {
@@ -13,6 +13,8 @@ const ProfileMoPage = () => {
 
   const { getCategories } = useItem();
   const { onSetCategories } = useNetflix();
+
+  const { onSetProfile } = useAuth();
 
   useEffect(() => {
     const getData = async () => {
@@ -39,11 +41,12 @@ const ProfileMoPage = () => {
 
           <div className={styles.profiles}>
             {[1, 2, 3, 4, 5].map((profile, i) => (
-              <Profile
+              <div
                 key={`profile_${i}`}
-                img={`${profile}`}
-                name={`${user.name} ${i + 1}`}
-              />
+                onClick={() => onSetProfile(`${user.name} ${i}`)}
+              >
+                <Profile img={`${profile}`} name={`${user.name} ${i + 1}`} />
+              </div>
             ))}
 
             <div></div>

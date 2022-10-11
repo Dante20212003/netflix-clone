@@ -6,14 +6,16 @@ export interface AuthState {
   user: {
     name: string;
     email: string;
+    profile?: string;
   };
 }
 
 const initialState: AuthState = {
   status: "not-authenticated",
   user: {
-    name: "dante",
-    email: "dante@example.com",
+    name: "",
+    email: "",
+    profile: "",
   },
 };
 
@@ -32,16 +34,18 @@ export const authSlice = createSlice({
       state.status = "authenticated";
       state.user = payload;
     },
+    setProfile: (state, { payload }: PayloadAction<string>) => {
+      state.user.profile = payload;
+    },
     setLogout: (state) => {
       state.status = "not-authenticated";
       state.user = { name: "", email: "" };
     },
-    clearErrosMessage: (state) => {},
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setChecking, setLogin, setLogout, clearErrosMessage } =
+export const { setChecking, setLogin, setProfile, setLogout } =
   authSlice.actions;
 
 export default authSlice.reducer;
