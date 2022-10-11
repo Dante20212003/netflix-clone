@@ -1,13 +1,22 @@
 .netflix_banner {
     background-color: #000;
     background-image: linear-gradient(rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .4) 50%, rgba(0, 0, 0, 1) 90%),
-        url('/img/movies/jefe.jpg');
+        url('/img/movies/stranger.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     height: 55rem;
 }
 
+.pelicula {
+    background-image: linear-gradient(rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .4) 50%, rgba(0, 0, 0, 1) 90%),
+        url('/img/movies/jefe.jpg');
+}
+
+.serie {
+    background-image: linear-gradient(rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .4) 50%, rgba(0, 0, 0, 1) 90%),
+        url('/img/movies/peaky.jpg');
+}
 
 .header {
     padding: 1.7rem 0;
@@ -44,7 +53,7 @@
     padding: 1rem 0 2rem 2rem;
     display: flex;
     gap: 3rem;
-    z-index: 999;
+    z-index: 100;
 }
 
 .enlace {
@@ -53,6 +62,8 @@
     color: #FFF;
     text-decoration: none;
 }
+
+
 
 .opacity {
     position: fixed !important;

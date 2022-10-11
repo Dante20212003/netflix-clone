@@ -28,6 +28,7 @@ import { CheckingAuth } from "@/components";
 import { useAuth } from "@/hooks/useAuth";
 import ProfileMoPage from "@/pages/Netflix/Mobile/ProfileMoPage";
 import CategoryItemPage from "@/pages/Netflix/Mobile/CategoryItemPage";
+import { NetflixLayout } from "@/layout/NetflixLayout";
 
 const AppRouter = () => {
   const { onCheckToken } = useAuth();
@@ -54,16 +55,18 @@ const AppRouter = () => {
           <Routes location={location} key={location.pathname}>
             {status == "authenticated" ? (
               <>
-                {window.innerWidth > 550 ? (
+                {window.innerWidth > 650 ? (
                   <Route index element={<HomeBroPage />} />
                 ) : (
                   <>
-                    <Route index element={<HomeMoPage />} />
+                    <Route path="/" element={<NetflixLayout />}>
+                      <Route index element={<HomeMoPage />} />
+                      <Route
+                        path="/category/:category"
+                        element={<CategoryItemPage />}
+                      />
+                    </Route>
                     <Route path="/selectProfile" element={<ProfileMoPage />} />
-                    <Route
-                      path="/category/:category"
-                      element={<CategoryItemPage />}
-                    />
                   </>
                 )}
               </>

@@ -1,0 +1,85 @@
+body.overlay {
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.overlay {
+    position: fixed;
+    background: rgb(0, 0, 0, .9);
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 999;
+    height: 100vh;
+    display: block !important;
+}
+
+.overlay_content {
+    overflow-y: initial !important;
+    height: 100%;
+}
+
+.overlay_container {
+    position: relative;
+    overflow-y: initial !important;
+    height: 100%;
+    display: grid;
+    place-content: center;
+}
+
+.overlay_container::before {
+    content: '';
+    width: 10px;
+    height: 100px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+}
+
+.padding {
+    padding-top: 10rem !important;
+}
+
+.overlay_body {
+
+    height: 100%;
+    overflow-y: auto;
+
+}
+
+
+.overlay_body p {
+    color: #FFF;
+    font-size: 2rem;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+
+
+.overlay_body::-webkit-scrollbar {
+    display: none;
+}
+
+.active {
+    font-weight: bold;
+    font-size: 2.2rem;
+}
+
+.btnClose {
+    background-color: #FFF;
+    text-align: center;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 50%;
+    left: 40%;
+    width: 6rem;
+    height: 6rem;
+    display: grid;
+    place-content: center;
+
+
+    font-size: 2rem;
+}

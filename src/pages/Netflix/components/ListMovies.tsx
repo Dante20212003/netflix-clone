@@ -5,61 +5,68 @@ import { SwiperSlide, Swiper } from "swiper/react";
 import { MovieItem } from "./MovieItem";
 import "swiper/css";
 import { useInView } from "react-intersection-observer";
-import { useInView as testView } from "framer-motion";
 import { useItem } from "@/hooks";
 
 interface Props {
   url?: string;
   special?: boolean;
   offset?: number;
+  type?: string;
 }
-export const ListMovies = ({ url = "", special, offset = 0 }: Props) => {
+export const ListMovies = ({
+  url = "",
+  special,
+  offset = 0,
+  type = "",
+}: Props) => {
   const { getByCategory, getMovies } = useItem();
 
   const [data, setData] = useState<INetflixItem[]>([]);
-  const [limit, setLimit] = useState(20);
-  
+  const [limit, setLimit] = useState(-20);
+
   const [maxLimit, setMaxLimit] = useState(0);
 
-  const { ref, inView } = useInView({ triggerOnce: true });
-  const { ref: ref2, inView: inView2 } = useInView();
+  const { ref, inView: groupItems } = useInView({ triggerOnce: true });
+  const { ref: ref2, inView: lastItem } = useInView();
+
+  const getDataType = async () => {
+    const { data: dataType, maxLimit } = await getMovies(
+      offset + limit + 20,
+      type
+    );
+    setLimit(limit + 20);
+    setMaxLimit(maxLimit);
+    setData(special ? dataType.slice(0, 10) : [...data, ...dataType]);
+  };
+
+  const getDataCategory = async () => {
+    const { data: dataCat, maxLimit } = await getByCategory(url, limit + 20);
+
+    setLimit(limit + 20);
+    setMaxLimit(maxLimit);
+    setData(special ? dataCat.slice(0, 10) : [...data, ...dataCat]);
+  };
 
   useEffect(() => {
-    const getDataType = async () => {
-      const data = await getMovies(offset);
-
-      setData(special ? data.slice(0, 10) : data);
-    };
-
-    const getDataCategory = async () => {
-      const data = await getByCategory(url, limit);
-      setMaxLimit(data.limit);
-      setData(data.data);
-    };
-
-    if (inView && data.length == 0) {
+    if (groupItems && data.length == 0) {
       if (offset >= 0 && url == "") {
         getDataType();
       } else {
         getDataCategory();
       }
     }
-  }, [inView]);
+  }, [groupItems]);
 
   useEffect(() => {
-    
-    if (inView2) {
+    if (lastItem) {
       if (offset >= 0 && url == "") {
         getDataType();
-      } else {
-        getDataCategory();
+        return;
       }
-      getByCategory(url, limit + 10).then((response: any) => {
-        setData(response.data);
-      });
-      setLimit(limit + 10);
+
+      if (!special) getDataCategory();
     }
-  }, [inView2]);
+  }, [lastItem]);
 
   return (
     <div ref={ref} style={{ display: "flex" }}>
@@ -88,7 +95,7 @@ export const ListMovies = ({ url = "", special, offset = 0 }: Props) => {
           </>
         )}
 
-        {limit < maxLimit && (
+        {limit < maxLimit && !special && (
           <SwiperSlide style={{ width: "11rem" }}>
             <div ref={ref2} style={{ color: "#FFF" }}>
               <MovieItem />

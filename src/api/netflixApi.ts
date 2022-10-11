@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const calendarApi = axios.create({
-  baseURL: "http://192.168.13.102:4000",
+  baseURL: "https://netflix-clone-ts.herokuapp.com",
 });
 
 //Configurate interceptors

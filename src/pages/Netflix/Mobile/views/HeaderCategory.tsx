@@ -10,34 +10,25 @@ import {
   AiOutlineArrowLeft,
 } from "react-icons/ai";
 import styles from "@/assets/styles/Netflix/Mobile/HeaderCategory.module.css";
-
-const variants = {
-  initial: {
-    opacity: 0,
-    x: 50,
-  },
-  enter: {
-    opacity: 1,
-    x: 0,
-    transition: { delay: 0, duration: 0.2 },
-  },
-  exit: {
-    opacity: 0,
-    x: -70,
-    transition: { delay: 0, duration: 0.2 },
-  },
-};
+import { useNetflix } from "@/hooks/useNetflix";
 
 export const HeaderCategory = () => {
   const params = useParams();
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ initialInView: true });
 
-  console.log(params);
+  const { onSetCategory, onToggleModal } = useNetflix();
+
   return (
-    <div className={styles.netflix_banner}>
+    <div
+      className={`${styles.netflix_banner} ${styles.item} ${
+        params.category == "Peliculas" && styles.pelicula
+      } ${params.category == "Series" && styles.serie}`}
+    >
       <header ref={ref} className={`${styles.header} container`}>
         <div className={styles.iconArrow}>
-          <AiOutlineArrowLeft size={25} color="FFF" />
+          <Link to="/">
+            <AiOutlineArrowLeft size={25} color="FFF" />
+          </Link>
           <p>{params.category}</p>
         </div>
 
@@ -60,18 +51,26 @@ export const HeaderCategory = () => {
             exit={{ x: 100, opacity: 0 }}
             initial={{ x: 100, opacity: 0 }}
           >
-            <Link to="/category/Series" className={styles.enlace}>
+            <Link
+              to="/category/Series"
+              className={styles.enlace}
+              onClick={() => onSetCategory("Series")}
+            >
               Series
             </Link>
           </motion.div>
         ) : (
           <motion.div
             animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.2 }}
+            transition={{ delay: 0.2, duration: 0.2 }}
             exit={{ x: 100, opacity: 0 }}
-            initial={{ x: 100, opacity: 0 }}
+            initial={{ x: 100, opacity: 0.5 }}
           >
-            <Link to="/category/Peliculas" className={styles.enlace}>
+            <Link
+              to="/category/Peliculas"
+              className={styles.enlace}
+              onClick={() => onSetCategory("Peliculas")}
+            >
               Peliculas
             </Link>
           </motion.div>
@@ -83,9 +82,9 @@ export const HeaderCategory = () => {
           transition={{ delay: 0.6 }}
           initial={{ opacity: 0 }}
         >
-          <Link to="/category/Categorias" className={styles.enlace}>
+          <a className={styles.enlace} onClick={() => onSetCategory("")}>
             Categorias
-          </Link>
+          </a>
         </motion.div>
       </nav>
 

@@ -70,7 +70,7 @@ const HomeMoPage = () => {
       <Header />
 
       <main className={styles.listCategories}>
-        {categorias.map((c) => (
+        {categorias.map((c, i) => (
           <div key={c.title}>
             <p className={styles.title}>{c.title}</p>
 

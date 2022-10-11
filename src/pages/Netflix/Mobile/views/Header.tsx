@@ -5,17 +5,12 @@ import { FaPlay } from "react-icons/fa";
 import { AiOutlinePlus, AiOutlineInfoCircle } from "react-icons/ai";
 import styles from "@/assets/styles/Netflix/Mobile/Header.module.css";
 import { Link } from "react-router-dom";
+import { useNetflix } from "@/hooks/useNetflix";
 
 export const Header = () => {
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ initialInView: true });
+  const { onToggleModal } = useNetflix();
 
-  useEffect(() => {
-    /*  if (!inView) {
-      document.body.style.marginTop = "15rem";
-    } else {
-      document.body.style.marginTop = "0";
-    } */
-  }, []);
   return (
     <div className={styles.netflix_banner}>
       <header ref={ref} className={`${styles.header} container`}>
@@ -39,9 +34,9 @@ export const Header = () => {
         <Link to="/category/Peliculas" className={styles.enlace}>
           Peliculas
         </Link>
-        <Link to="/category/Categorias" className={styles.enlace}>
+        <a className={styles.enlace} onClick={() => onToggleModal()}>
           Categorias
-        </Link>
+        </a>
       </nav>
 
       <div className={`${styles.info} ${!inView && styles.fix_navBar}`}>
