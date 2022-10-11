@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Button } from "@/styled-components";
 import styles from "@/assets/styles/Auth/RegRegistrationPage.module.css";
 import { RootState } from "@/store";
-import { useAuth } from "@/hooks";
+import { useRegister } from "@/hooks";
 
 const formValidate = {
   email: {
@@ -38,8 +38,8 @@ const formValidate = {
 export const RegFormPage = () => {
   const navigate = useNavigate();
 
-  const { isLoading, onSetEmailPassword } = useAuth();
-  const { email } = useSelector((state: RootState) => state.auth);
+  const { isLoading, onSetEmailPassword } = useRegister();
+  const { email } = useSelector((state: RootState) => state.register);
 
   const {
     register,
@@ -108,3 +108,5 @@ export const RegFormPage = () => {
     </>
   );
 };
+
+export default RegFormPage;

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 
 export const RegPage = () => {
-  const { email } = useSelector((state: RootState) => state.auth);
+  const { email } = useSelector((state: RootState) => state.register);
   if (!email && !localStorage.email) return <Navigate to="/signup/regform" />;
 
   return (
@@ -44,3 +44,5 @@ export const RegPage = () => {
     </>
   );
 };
+
+export default RegPage;

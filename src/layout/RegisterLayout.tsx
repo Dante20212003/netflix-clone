@@ -25,12 +25,7 @@ export const RegisterLayout = () => {
     <>
       <Header />
 
-      {/* <AnimatePresence initial={false}> */}
       <motion.div
-        /* initial={{ x: "100%" }}
-        animate={{ x: 0 }}
-        exit={{ x: "-100%" }}
-        transition={{ duration: 1 }} */
         animate="enter"
         className="fallback"
         exit="exit"
@@ -39,7 +34,6 @@ export const RegisterLayout = () => {
       >
         <Outlet />
       </motion.div>
-      {/* </AnimatePresence> */}
 
       <Footer register />
     </>

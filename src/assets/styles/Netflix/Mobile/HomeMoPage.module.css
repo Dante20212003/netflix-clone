@@ -1,0 +1,14 @@
+.container {
+    background-color: #000;
+}
+
+.listCategories {
+    margin-top: -3rem;
+}
+
+.title {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 3rem 0 1rem 1rem;
+}

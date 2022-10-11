@@ -24,3 +24,5 @@ export const RegRegistrationPage = () => {
     </>
   );
 };
+
+export default RegRegistrationPage;

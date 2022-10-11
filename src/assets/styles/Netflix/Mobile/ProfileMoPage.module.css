@@ -1,0 +1,38 @@
+.background {
+    background-color: #000;
+    height: 100vh;
+}
+
+.container {
+    max-width: 120rem;
+    width: 95%;
+    margin: 0 auto;
+
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 10rem;
+}
+
+.title {
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.profiles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 2rem;
+    margin: 0 auto;
+    row-gap: 3rem;
+}

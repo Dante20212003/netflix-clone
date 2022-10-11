@@ -4,7 +4,7 @@ import NetflixLogo from "@/assets/img/netflix.svg";
 import styles from "@/assets/styles/Auth/LoginPage.module.css";
 import { Button } from "@/styled-components";
 import { Footer } from "@/components";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks";
 
 const formValidate = {
   email: {
@@ -39,11 +39,8 @@ export const LoginPage = () => {
     mode: "onChange",
   });
 
-  const onSubmit = (data: any) => {
-    onLogin();
-    console.log("logeando");
-    /* TODO: REALIZAR LA CREACION DE CUENTA */
-    //navigate("/signup");
+  const onSubmit = (data: { email: string; password: string }) => {
+    onLogin(data);
   };
 
   return (

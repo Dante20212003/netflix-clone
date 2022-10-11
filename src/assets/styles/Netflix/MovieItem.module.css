@@ -1,0 +1,83 @@
+.container {
+    position: relative;
+}
+
+.img {
+    border-radius: .5rem;
+    width: 11rem;
+    height: 16rem;
+    object-fit: cover;
+    object-position: center;
+}
+
+.number {
+    position: absolute;
+    font-size: 12rem;
+    font-weight: bold;
+    bottom: -28px;
+    left: -35px;
+    color: #000;
+    text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
+        1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+    letter-spacing: -1.7rem;
+
+}
+
+.number::before {
+    position: absolute;
+    top: 0;
+    content: '';
+    width: 10rem;
+    height: 100%;
+    background: linear-gradient(to right, rgb(0, 0, 0, 1) 0%, rgb(0, 0, 0, 0) 50%)
+}
+
+
+.skeleton {
+    width: 11rem;
+    height: 16rem;
+    display: block;
+    background-color: rgba(49, 47, 47, 0.5);
+    animation-name: shine;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    border-radius: 1rem;
+}
+
+@media (min-width: 550px) {
+    .skeleton-loader {
+        margin: 0;
+        width: 85%;
+        height: 100%;
+    }
+}
+
+@media (min-width: 950px) {
+    .skeleton-loader {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@keyframes shine {
+    0% {
+        background-color: rgba(49, 47, 47, 0)
+    }
+
+    25% {
+        background-color: rgba(49, 47, 47, .3)
+    }
+
+    50% {
+        background-color: rgba(49, 47, 47, .5)
+    }
+
+    75% {
+        background-color: rgba(49, 47, 47, .3)
+    }
+
+    100% {
+        background-color: rgba(49, 47, 47, 0)
+    }
+}

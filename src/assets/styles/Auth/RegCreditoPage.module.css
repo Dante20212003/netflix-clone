@@ -22,9 +22,14 @@
 .container>h1 {
     font-size: 3.2rem;
     font-weight: 600;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1rem;
 }
 
+.methodsPay {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+}
 
 .form_group {
     position: relative;
@@ -110,14 +115,24 @@
 .payment a {
     color: #0071eb;
     text-decoration: none;
+    font-weight: 600;
 }
 
 .payment a:hover {
     text-decoration: underline;
 }
 
+.containerSmall {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    gap: 3rem;
+}
 
-
+.small {
+    font-size: 1.3rem;
+    color: #8c8c8c;
+}
 
 .small span:not(:last-child) {
     color: #0071eb;
@@ -130,7 +145,7 @@
 
 .small span:last-child {
     color: #8c8c8c;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .button {
@@ -168,7 +183,7 @@
 
 .button:disabled::after {
     content: "";
-    background-image: url(https://assets.nflxext.com/en_us/pages/wiplayer/site-spinner.png);
+    background-image: url("/spinner.png");
     background-repeat: no-repeat;
     background-position-x: 50%;
     background-position-y: 50%;

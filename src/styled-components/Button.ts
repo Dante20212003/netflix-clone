@@ -44,7 +44,7 @@ export const Button = styled.button<Props>`
 
   &:disabled::after {
     content: "";
-    background-image: url(https://assets.nflxext.com/en_us/pages/wiplayer/site-spinner.png);
+    background-image: url("/spinner.png");
     background-repeat: no-repeat;
     background-position-x: 50%;
     background-position-y: 50%;

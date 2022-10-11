@@ -6,11 +6,11 @@ import { SiAmericanexpress } from "react-icons/si";
 import { RootState } from "@/store";
 import { plans } from "@/data";
 import styles from "@/assets/styles/Auth/RegPaymentPicker.module.css";
-import { useAuth } from "@/hooks";
+import { useRegister } from "@/hooks";
 
 export const RegPaymentPicker = () => {
-  const { isLoading, onPayment } = useAuth();
-  const { plan } = useSelector((state: RootState) => state.auth);
+  const { isLoading, onPayment } = useRegister();
+  const { plan } = useSelector((state: RootState) => state.register);
   const planActual = plans[plan];
 
   return (
@@ -71,3 +71,5 @@ export const RegPaymentPicker = () => {
     </>
   );
 };
+
+export default RegPaymentPicker;

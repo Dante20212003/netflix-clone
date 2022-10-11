@@ -1,10 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useRegister } from "@/hooks";
 import { Input } from "@/components";
 import styles from "@/assets/styles/Home/SuscriptionHomePage.module.css";
-import { setEmail } from "@/store/auth/authSlice";
-import { useEffect } from "react";
-import { useAuth } from "@/hooks";
 
 type FormValues = {
   email: string;
@@ -14,7 +12,7 @@ type FormValues = {
 export const SuscriptionHomePage = ({ small }: { small?: boolean }) => {
   const navigate = useNavigate();
 
-  const { isLoading, onSetEmail } = useAuth();
+  const { isLoading, onSetEmail } = useRegister();
 
   const { handleSubmit, control } = useForm<FormValues>({
     defaultValues: {
@@ -25,9 +23,6 @@ export const SuscriptionHomePage = ({ small }: { small?: boolean }) => {
 
   const onSubmit = (data: FormValues) => {
     onSetEmail(data.email);
-
-    /* dispatch(setEmail(data.email)); */
-    /* navigate("/signup/registration"); */
   };
 
   return (

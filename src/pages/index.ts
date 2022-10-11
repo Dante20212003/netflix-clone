@@ -1,3 +1,3 @@
 export * from "./Auth";
 export * from "./Home";
-export * from "./NetflixHome";
+export * from "./Netflix/Browser/HomeBroPage";

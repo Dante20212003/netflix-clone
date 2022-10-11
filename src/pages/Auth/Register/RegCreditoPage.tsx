@@ -2,11 +2,14 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useAuth } from "@/hooks";
+import { useRegister } from "@/hooks";
 import { Button } from "@/styled-components";
+import { RiVisaFill } from "react-icons/ri";
+import { FaCcMastercard } from "react-icons/fa";
+import { SiAmericanexpress } from "react-icons/si";
 import { RootState } from "@/store";
 import { plans } from "@/data";
-import { formatCard, formatDateCard } from "@/utilities";
+import { formatCard } from "@/utilities";
 import styles from "@/assets/styles/Auth/RegCreditoPage.module.css";
 
 const formValidate = {
@@ -50,9 +53,9 @@ interface FormValues {
 export const RegCreditoPage = () => {
   const navigate = useNavigate();
 
-  const { isLoading, onCompleteRegister } = useAuth();
+  const { isLoading, onCompleteRegister } = useRegister();
 
-  const { plan } = useSelector((state: RootState) => state.auth);
+  const { plan } = useSelector((state: RootState) => state.register);
   const planActual = plans[plan];
 
   const {
@@ -73,15 +76,17 @@ export const RegCreditoPage = () => {
     setValue("nroTarjeta", formatCard(watch().nroTarjeta));
   }, [watch().nroTarjeta]);
 
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
-
   return (
     <>
       <div className={styles.container}>
         <span>Paso 1 de 3</span>
         <h1>Configura tu tarjeta de crédito o débito</h1>
+
+        <div className={styles.methodsPay}>
+          <RiVisaFill size={30} color="blue" />
+          <FaCcMastercard size={30} color="black" />
+          <SiAmericanexpress size={30} color="red" />
+        </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div
@@ -223,25 +228,27 @@ export const RegCreditoPage = () => {
             <Link to="/signup/planform">Cambiar</Link>
           </div>
 
-          <small className={styles.small}>
-            Los pagos se procesarán internacionalmente. Es posible que se
-            apliquen comisiones bancarias adicionales.
-          </small>
+          <div className={styles.containerSmall}>
+            <small className={styles.small}>
+              Los pagos se procesarán internacionalmente. Es posible que se
+              apliquen comisiones bancarias adicionales.
+            </small>
 
-          <small className={styles.small}>
-            Al hacer clic en el botón Iniciar membresía, aceptas nuestros{" "}
-            <span>Términos de uso</span> y nuestra{" "}
-            <span>Declaración de privacidad</span>, declaras que tienes más de
-            18 años y aceptas que{" "}
-            <span>
-              Netflix continuará tu membresía de manera automática y, hasta que
-              la canceles, te facturará la cuota de membresía (actualmente de{" "}
-              {planActual[0]} al mes) a través de la forma de pago elegida.
-              Puedes cancelarla en cualquier momento para evitar cargos en el
-              futuro.
-            </span>{" "}
-            Para hacerlo, ve a Cuenta y haz clic en Cancelar membresía.
-          </small>
+            <small className={styles.small}>
+              Al hacer clic en el botón Iniciar membresía, aceptas nuestros{" "}
+              <span>Términos de uso</span> y nuestra{" "}
+              <span>Declaración de privacidad</span>, declaras que tienes más de
+              18 años y aceptas que{" "}
+              <span>
+                Netflix continuará tu membresía de manera automática y, hasta
+                que la canceles, te facturará la cuota de membresía (actualmente
+                de {planActual[0]} al mes) a través de la forma de pago elegida.
+                Puedes cancelarla en cualquier momento para evitar cargos en el
+                futuro.
+              </span>{" "}
+              Para hacerlo, ve a Cuenta y haz clic en Cancelar membresía.
+            </small>
+          </div>
 
           <Button disabled={isLoading} type="submit">
             Iniciar membresia
@@ -251,3 +258,5 @@ export const RegCreditoPage = () => {
     </>
   );
 };
+
+export default RegCreditoPage;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AiOutlineCheck } from "react-icons/ai";
-import { useAuth } from "@/hooks";
+import { useRegister } from "@/hooks";
 import { Button } from "@/styled-components";
 import { plans } from "@/data";
 import styles from "@/assets/styles/Auth/RegPlanPage.module.css";
@@ -11,7 +11,7 @@ export const RegPlanPage = () => {
   );
   const { basico, estandar, premium } = plans;
 
-  const { isLoading, onSetPlan } = useAuth();
+  const { isLoading, onSetPlan } = useRegister();
 
   const handleSelectPlan = () => {
     onSetPlan(plan);
@@ -174,10 +174,20 @@ export const RegPlanPage = () => {
           Premium, en 2 con el plan Estándar y en 1 con el plan Básico.
         </small>
 
-        <Button disabled={isLoading} onClick={handleSelectPlan}>
-          Siguiente
-        </Button>
+        <div style={{ display: "flex", placeContent: "center" }}>
+          <Button
+            style={{
+              maxWidth: "44rem",
+            }}
+            disabled={isLoading}
+            onClick={handleSelectPlan}
+          >
+            Siguiente
+          </Button>
+        </div>
       </div>
     </>
   );
 };
+
+export default RegPlanPage;
