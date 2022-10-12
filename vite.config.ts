@@ -30,7 +30,7 @@ export default defineConfig({
           },
         ],
       },
-      srcDir: "src",
+      
       strategies: "injectManifest",
     }),
   ],
