@@ -12,6 +12,7 @@ import { RootState } from "@/store";
 import Drawer from "@/pages/Netflix/components/Drawer";
 import { Searching } from "@/pages/Netflix/Mobile/views/Searching";
 import { ConfigPage } from "@/pages/Netflix/Mobile/views/ConfigPage";
+import { DrawerMovie } from "@/pages/Netflix/Mobile/views/DrawerMovie";
 
 export const NetflixLayout = () => {
   const [y, setY] = useState(window.scrollY);
@@ -55,6 +56,8 @@ export const NetflixLayout = () => {
 
   return (
     <>
+      <DrawerMovie />
+
       <Searching />
 
       <ConfigPage />

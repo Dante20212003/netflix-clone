@@ -6,6 +6,7 @@ import { MovieItem } from "./MovieItem";
 import "swiper/css";
 import { useInView } from "react-intersection-observer";
 import { useItem } from "@/hooks";
+import { useNetflix } from "@/hooks/useNetflix";
 
 interface Props {
   url?: string;
@@ -20,6 +21,7 @@ export const ListMovies = ({
   type = "",
 }: Props) => {
   const { getByCategory, getMovies } = useItem();
+  const { onSetItem, onToggleItem } = useNetflix();
 
   const [data, setData] = useState<INetflixItem[]>([]);
   const [limit, setLimit] = useState(-20);
@@ -88,7 +90,14 @@ export const ListMovies = ({
         ) : (
           <>
             {data.map((movie, i) => (
-              <SwiperSlide key={movie.netflix_id} style={{ width: "11rem" }}>
+              <SwiperSlide
+                key={movie.netflix_id}
+                style={{ width: "11rem" }}
+                onClick={() => {
+                  onSetItem(movie);
+                  onToggleItem();
+                }}
+              >
                 <MovieItem img={movie.img} number={special ? i + 1 : null} />
               </SwiperSlide>
             ))}

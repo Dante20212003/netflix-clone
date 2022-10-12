@@ -1,9 +1,12 @@
+import { INetflixItem } from "@/models/Netflix";
 import { AppDispatch } from "@/store";
 import {
   reset,
   setCategories,
   setCategory,
   setConfig,
+  setDrawerItem,
+  setItem,
   setOpen,
   setSearch,
 } from "@/store/netflix";
@@ -28,6 +31,14 @@ export const useNetflix = () => {
     dispatch(setConfig());
   };
 
+  const onToggleItem = () => {
+    dispatch(setDrawerItem());
+  };
+
+  const onSetItem = (data: INetflixItem) => {
+    dispatch(setItem(data));
+  };
+
   const onSetCategories = (data: any[]) => {
     dispatch(setCategories(data));
   };
@@ -43,5 +54,7 @@ export const useNetflix = () => {
     onToggleSearch,
     onToggleConfig,
     onResetLogout,
+    onToggleItem,
+    onSetItem,
   };
 };

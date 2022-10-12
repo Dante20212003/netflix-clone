@@ -1,23 +1,22 @@
-import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FiSearch } from "react-icons/fi";
 import { FaPlay } from "react-icons/fa";
+import { IoMdArrowDropdown } from "react-icons/io";
 import {
   AiOutlinePlus,
   AiOutlineInfoCircle,
   AiOutlineArrowLeft,
 } from "react-icons/ai";
-import styles from "@/assets/styles/Netflix/Mobile/HeaderCategory.module.css";
 import { useNetflix } from "@/hooks/useNetflix";
-import { IoMdArrowDropdown } from "react-icons/io";
+import styles from "@/assets/styles/Netflix/Mobile/HeaderCategory.module.css";
 
 export const HeaderCategory = () => {
   const params = useParams();
   const { ref, inView } = useInView({ initialInView: true });
 
-  const { onSetCategory, onToggleConfig } = useNetflix();
+  const { onSetCategory, onToggleConfig, onToggleSearch } = useNetflix();
 
   return (
     <div
@@ -34,7 +33,7 @@ export const HeaderCategory = () => {
         </div>
 
         <div className={styles.header_actions}>
-          <FiSearch size={25} color="FFF" />
+          <FiSearch size={25} color="FFF" onClick={() => onToggleSearch()} />
 
           <img
             src="/img/profile/1.png"

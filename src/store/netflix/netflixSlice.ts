@@ -1,10 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { INetflixItem } from "@/models/Netflix";
 
 export interface TemplateState {
   open: boolean;
   search: boolean;
   config: boolean;
+  drawerItem: boolean;
+  item: INetflixItem;
   category: string;
   allCategories: any[];
 }
@@ -13,6 +16,8 @@ const initialState: TemplateState = {
   open: false,
   search: false,
   config: false,
+  drawerItem: false,
+  item: {} as INetflixItem,
   category: "",
   allCategories: [],
 };
@@ -36,6 +41,12 @@ export const netflixSlice = createSlice({
     setConfig: (state) => {
       state.config = !state.config;
     },
+    setDrawerItem: (state) => {
+      state.drawerItem = !state.drawerItem;
+    },
+    setItem: (state, { payload }: PayloadAction<INetflixItem>) => {
+      state.item = payload;
+    },
     reset: (state) => {
       state.open = false;
       state.search = false;
@@ -53,6 +64,8 @@ export const {
   setCategories,
   setSearch,
   setConfig,
+  setDrawerItem,
+  setItem,
   reset,
 } = netflixSlice.actions;
 
