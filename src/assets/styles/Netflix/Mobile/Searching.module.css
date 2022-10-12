@@ -52,6 +52,7 @@
 }
 
 .title span {
+    display: block;
     font-weight: bold;
     font-size: 1.8rem;
 }

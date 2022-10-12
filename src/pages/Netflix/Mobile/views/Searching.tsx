@@ -35,8 +35,12 @@ export const Searching = () => {
   const { onToggleSearch, onToggleConfig } = useNetflix();
   const { getDataByName, getByCategory, isLoading, setIsLoading } = useItem();
 
-  const getData = async (val: string) => {
-    const { data, maxLimit } = await getDataByName(dataSearch.length, val);
+  const getData = async (val: string, setLoading: boolean = true) => {
+    const { data, maxLimit } = await getDataByName(
+      dataSearch.length,
+      val,
+      setLoading
+    );
 
     setDataSearch([...dataSearch, ...data]);
     setLimit(limit + 20);
@@ -82,7 +86,7 @@ export const Searching = () => {
 
   useEffect(() => {
     if (inView) {
-      getData(valueSearch);
+      getData(valueSearch, false);
     }
   }, [inView]);
 

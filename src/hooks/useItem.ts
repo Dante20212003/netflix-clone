@@ -55,8 +55,13 @@ export const useItem = () => {
     }
   };
 
-  const getDataByName = async (offset: number, name: string) => {
-    setIsLoading(true);
+  const getDataByName = async (
+    offset: number,
+    name: string,
+    setLoading: boolean = true
+  ) => {
+    setLoading && setIsLoading(true);
+
     try {
       const response = await netflixApi(`/item/title/${name}?offset=${offset}`);
 
