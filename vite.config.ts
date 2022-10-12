@@ -10,7 +10,30 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  plugins: [react(), VitePWA({ registerType: "autoUpdate" })],
+  plugins: [
+    react(),
+    VitePWA({
+      filename: "sw.ts",
+      includeAssets: ["*.svg"],
+      includeManifestIcons: false,
+      injectRegister: false,
+      manifest: {
+        name: "Netflix Clone",
+        short_name: "Netflix",
+        description: "Almost exact clone of Netflix .",
+        theme_color: "#000000",
+        icons: [
+          {
+            src: "netflix.svg",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
+      },
+      srcDir: "src/service-worker",
+      strategies: "injectManifest",
+    }),
+  ],
   server: {
     host: true,
   },
