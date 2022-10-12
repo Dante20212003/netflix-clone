@@ -21,7 +21,7 @@ function Drawer({ open, handleDrawer, children, color, position }: Props2) {
             }}
             animate={{
               x: 0,
-              y: position == "bottom" ? "67%" : "",
+              y: position == "bottom" ? "72%" : "",
             }}
             exit={{
               x: position == "bottom" ? "0%" : "100%",
