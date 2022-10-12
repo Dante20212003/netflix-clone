@@ -1,14 +1,19 @@
+import { useState } from "react";
 import { netflixApi } from "@/api";
 import { INetflixItem } from "@/models/Netflix";
 
 export const useItem = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const getByCategory = async (category: string, limit = 0) => {
+    setIsLoading(true);
     try {
       const response = await netflixApi(
         `/item/category/${category}?offset=${limit}`
       );
 
       const data = response.data;
+      setIsLoading(false);
 
       return { maxLimit: data.limit, data: data.items };
     } catch (error) {
@@ -50,9 +55,27 @@ export const useItem = () => {
     }
   };
 
+  const getDataByName = async (offset: number, name: string) => {
+    setIsLoading(true);
+    try {
+      const response = await netflixApi(`/item/title/${name}?offset=${offset}`);
+
+      const data = response.data;
+      setIsLoading(false);
+
+      return { maxLimit: data.total, data: data.items };
+    } catch (error) {
+      console.log(error);
+      return { maxLimit: 0, data: [] };
+    }
+  };
+
   return {
+    isLoading,
+    setIsLoading,
     getByCategory,
     getMovies,
     getCategories,
+    getDataByName,
   };
 };

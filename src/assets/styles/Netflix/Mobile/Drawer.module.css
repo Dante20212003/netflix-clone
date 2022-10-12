@@ -1,0 +1,26 @@
+body .drawer {
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.drawer {
+    position: fixed;
+    background: rgb(0, 0, 0, 1);
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 999;
+    height: 100vh;
+    display: block !important;
+}
+
+.drawer_container {
+    position: relative;
+    overflow-y: initial !important;
+    height: 100%;
+}
+
+.drawer_body {
+    height: 100%;
+    overflow-y: auto;
+}

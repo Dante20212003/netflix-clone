@@ -7,7 +7,7 @@ import { useLocation, useParams } from "react-router-dom";
 const CategoryItemPage = () => {
   const params = useParams();
 
-  console.log(params);
+
   return (
     <div className={styles.container}>
       <HeaderCategory />

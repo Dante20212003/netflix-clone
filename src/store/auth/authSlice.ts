@@ -39,7 +39,7 @@ export const authSlice = createSlice({
     },
     setLogout: (state) => {
       state.status = "not-authenticated";
-      state.user = { name: "", email: "" };
+      state.user = { name: "", email: "", profile: "" };
     },
   },
 });

@@ -26,15 +26,17 @@ export const Modal = () => {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <div className={styles.overlay}>
         <div className={styles.overlay_container}>
-          <div className={styles.overlay_body}>
+          <div
+            className={`${styles.overlay_body} ${
+              category.length > 0 && styles.center
+            }`}
+          >
             <p className={`${category == "" && styles.padding}`}>Inicio</p>
 
             {category == "" ? (
               <>
                 {allCategories.map((category) => (
-                  <>
-                    <p>{category.genre}</p>
-                  </>
+                  <p key={category._id}>{category.genre}</p>
                 ))}
               </>
             ) : (

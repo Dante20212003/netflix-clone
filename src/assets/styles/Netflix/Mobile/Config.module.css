@@ -1,0 +1,68 @@
+.container {
+    padding: 0 1rem;
+}
+
+.top_drawer {
+    display: flex;
+    gap: 2rem;
+    padding: 1.7rem 1rem;
+    align-items: center;
+    color: #FFF;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.profiles {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+}
+
+.administrar {
+    padding: 2rem 0;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.administrar p {
+    color: gray;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(19, 19, 19);
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+.icon {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.icon span {
+    font-size: 1.4rem;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.logout {
+    all: unset;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 5rem;
+    color: gray;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}

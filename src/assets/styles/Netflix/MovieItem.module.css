@@ -1,6 +1,4 @@
-.container {
-    position: relative;
-}
+.container {}
 
 .img {
     border-radius: .5rem;
@@ -8,6 +6,7 @@
     height: 16rem;
     object-fit: cover;
     object-position: center;
+
 }
 
 .number {

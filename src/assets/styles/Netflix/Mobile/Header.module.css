@@ -41,10 +41,17 @@
 }
 
 .enlace {
+    position: relative;
     font-size: 1.5rem;
     font-weight: 400;
     color: #FFF;
     text-decoration: none;
+}
+
+.enlaceArrow {
+    position: absolute;
+    top: 0;
+    right: -2.5rem
 }
 
 .opacity {

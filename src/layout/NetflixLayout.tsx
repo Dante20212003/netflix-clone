@@ -9,11 +9,18 @@ import styles from "@/assets/styles/Netflix/Mobile/NetflixLayout.module.css";
 import { Modal } from "@/pages/Netflix/components/Modal";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import Drawer from "@/pages/Netflix/components/Drawer";
+import { Searching } from "@/pages/Netflix/Mobile/views/Searching";
+import { ConfigPage } from "@/pages/Netflix/Mobile/views/ConfigPage";
 
 export const NetflixLayout = () => {
   const [y, setY] = useState(window.scrollY);
   const [inScroll, setInScroll] = useState(false);
-  const { open: sidebar } = useSelector((state: RootState) => state.netflix);
+  const {
+    open: modalCategories,
+    search: drawerSearch,
+    config,
+  } = useSelector((state: RootState) => state.netflix);
 
   const handleNavigation = useCallback(
     (e: any) => {
@@ -38,21 +45,21 @@ export const NetflixLayout = () => {
   }, [handleNavigation]);
 
   useEffect(() => {
-    console.log(inScroll);
-  }, [inScroll]);
-
-  useEffect(() => {
-    if (sidebar) {
+    if (modalCategories || drawerSearch || config) {
       document.body.style.overflow = "hidden";
       document.body.style.height = "100vh";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [sidebar]);
+  }, [modalCategories || drawerSearch || config]);
 
   return (
     <>
-      {sidebar && <Modal />}
+      <Searching />
+
+      <ConfigPage />
+
+      {modalCategories && <Modal />}
 
       <Outlet />
 

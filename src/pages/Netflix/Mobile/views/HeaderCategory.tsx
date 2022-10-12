@@ -11,12 +11,13 @@ import {
 } from "react-icons/ai";
 import styles from "@/assets/styles/Netflix/Mobile/HeaderCategory.module.css";
 import { useNetflix } from "@/hooks/useNetflix";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 export const HeaderCategory = () => {
   const params = useParams();
   const { ref, inView } = useInView({ initialInView: true });
 
-  const { onSetCategory, onToggleModal } = useNetflix();
+  const { onSetCategory, onToggleConfig } = useNetflix();
 
   return (
     <div
@@ -35,7 +36,12 @@ export const HeaderCategory = () => {
         <div className={styles.header_actions}>
           <FiSearch size={25} color="FFF" />
 
-          <img src="/img/profile/1.png" alt="" className={styles.profile} />
+          <img
+            src="/img/profile/1.png"
+            alt=""
+            className={styles.profile}
+            onClick={() => onToggleConfig()}
+          />
         </div>
       </header>
 
@@ -57,6 +63,11 @@ export const HeaderCategory = () => {
               onClick={() => onSetCategory("Series")}
             >
               Series
+              <IoMdArrowDropdown
+                className={styles.enlaceArrow}
+                size={20}
+                color="FFF"
+              />
             </Link>
           </motion.div>
         ) : (
@@ -72,6 +83,11 @@ export const HeaderCategory = () => {
               onClick={() => onSetCategory("Peliculas")}
             >
               Peliculas
+              <IoMdArrowDropdown
+                className={styles.enlaceArrow}
+                size={20}
+                color="FFF"
+              />
             </Link>
           </motion.div>
         )}
@@ -84,6 +100,11 @@ export const HeaderCategory = () => {
         >
           <a className={styles.enlace} onClick={() => onSetCategory("")}>
             Categorias
+            <IoMdArrowDropdown
+              className={styles.enlaceArrow}
+              size={20}
+              color="FFF"
+            />
           </a>
         </motion.div>
       </nav>
@@ -102,7 +123,11 @@ export const HeaderCategory = () => {
               <span>10</span>
             </div>
 
-            <p>N.° 1 en series hoy</p>
+            <p>
+              {params.category == "Series"
+                ? "N.° 5 en series hoy"
+                : "N.° 8 en peliculas hoy"}
+            </p>
           </div>
 
           <button className={styles.button}>

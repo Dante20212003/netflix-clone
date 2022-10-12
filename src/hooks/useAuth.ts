@@ -31,7 +31,7 @@ export const useAuth = () => {
     setTimeout(() => {
       setIsLoading(false);
 
-      localStorage.setItem("token", crypto.randomUUID.toString());
+      localStorage.setItem("token", crypto.randomUUID());
 
       const user = {
         name: localStorage.name || "User",
@@ -43,6 +43,11 @@ export const useAuth = () => {
     }, 3000);
   };
 
+  const onLogout = () => {
+    localStorage.clear();
+    dispatch(setLogout());
+  };
+
   const onSetProfile = (profile: string) => {
     dispatch(setProfile(profile));
   };
@@ -51,6 +56,7 @@ export const useAuth = () => {
     isLoading,
     onCheckToken,
     onLogin,
+    onLogout,
     onSetProfile,
   };
 };

@@ -29,6 +29,7 @@ import { useAuth } from "@/hooks/useAuth";
 import ProfileMoPage from "@/pages/Netflix/Mobile/ProfileMoPage";
 import CategoryItemPage from "@/pages/Netflix/Mobile/CategoryItemPage";
 import { NetflixLayout } from "@/layout/NetflixLayout";
+import SearchPage from "@/pages/Netflix/Mobile/SearchPage";
 
 const AppRouter = () => {
   const { onCheckToken } = useAuth();
@@ -67,6 +68,7 @@ const AppRouter = () => {
                       />
                     </Route>
                     <Route path="/selectProfile" element={<ProfileMoPage />} />
+                    <Route path="/search" element={<SearchPage />} />
                   </>
                 )}
               </>

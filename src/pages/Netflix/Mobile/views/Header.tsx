@@ -2,14 +2,17 @@ import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { FiSearch } from "react-icons/fi";
 import { FaPlay } from "react-icons/fa";
+import { IoMdArrowDropdown } from "react-icons/io";
 import { AiOutlinePlus, AiOutlineInfoCircle } from "react-icons/ai";
 import styles from "@/assets/styles/Netflix/Mobile/Header.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useNetflix } from "@/hooks/useNetflix";
 
 export const Header = () => {
   const { ref, inView } = useInView({ initialInView: true });
-  const { onToggleModal } = useNetflix();
+  const { onToggleModal, onToggleSearch, onToggleConfig } = useNetflix();
+
+  const navigate = useNavigate();
 
   return (
     <div className={styles.netflix_banner}>
@@ -17,9 +20,14 @@ export const Header = () => {
         <img src="/netflix.svg" className={styles.netlix_logo} alt="logo" />
 
         <div className={styles.header_actions}>
-          <FiSearch size={25} color="FFF" />
+          <FiSearch size={25} color="FFF" onClick={() => onToggleSearch()} />
 
-          <img src="/img/profile/1.png" alt="" className={styles.profile} />
+          <img
+            src="/img/profile/1.png"
+            alt=""
+            className={styles.profile}
+            onClick={() => onToggleConfig()}
+          />
         </div>
       </header>
 
@@ -36,6 +44,11 @@ export const Header = () => {
         </Link>
         <a className={styles.enlace} onClick={() => onToggleModal()}>
           Categorias
+          <IoMdArrowDropdown
+            className={styles.enlaceArrow}
+            size={20}
+            color="FFF"
+          />
         </a>
       </nav>
 

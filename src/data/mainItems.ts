@@ -70,7 +70,37 @@ export const categoriesPage = [
     special: false,
     offset: 5000,
     offset_v2: 1200,
+  } /*  */,
+  {
+    title: "Aliquam convallis, lacus",
+    special: false,
+    offset: 1800,
+    offset_v2: 550,
   },
+  {
+    title: "Donec nunc massa",
+    special: false,
+    offset: 8500,
+    offset_v2: 850,
+  },
+  {
+    title: "Mauris ipsum tellus",
+    special: false,
+    offset: 2800,
+    offset_v2: 2500,
+  },
+  {
+    title: "Nullam congue tincidunt nisi",
+    special: false,
+    offset: 3800,
+    offset_v2: 2800,
+  },
+  {
+    title: " Quisque et nibh ut",
+    special: false,
+    offset: 4800,
+    offset_v2: 3000,
+  } /*  */,
   {
     title: "Nunc eu ipsum vel lacus",
     special: false,
@@ -100,7 +130,7 @@ export const categoriesPage = [
     special: false,
     offset: 8000,
     offset_v2: 1700,
-  } /*  */,
+  },
   {
     title: "Taciti sociosqu",
     special: false,

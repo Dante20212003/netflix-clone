@@ -6,6 +6,7 @@ export interface NetflixData {
 }
 
 export interface INetflixItem {
+  _id?: string;
   imdb_id: string;
   img: string;
   netflix_id: number;
