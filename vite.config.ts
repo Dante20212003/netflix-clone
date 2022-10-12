@@ -30,7 +30,7 @@ export default defineConfig({
           },
         ],
       },
-      srcDir: "src/service-worker",
+      srcDir: "src",
       strategies: "injectManifest",
     }),
   ],
