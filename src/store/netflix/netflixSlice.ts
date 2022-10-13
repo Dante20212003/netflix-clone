@@ -41,8 +41,10 @@ export const netflixSlice = createSlice({
     setConfig: (state) => {
       state.config = !state.config;
     },
-    setDrawerItem: (state) => {
-      state.drawerItem = !state.drawerItem;
+    setDrawerItem: (state, payload: any) => {
+      if (payload.payload == "1") {
+        state.drawerItem = false;
+      } else state.drawerItem = !state.drawerItem;
     },
     setItem: (state, { payload }: PayloadAction<INetflixItem>) => {
       state.item = payload;

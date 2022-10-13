@@ -4,9 +4,9 @@ import { FiSearch } from "react-icons/fi";
 import { FaPlay } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { AiOutlinePlus, AiOutlineInfoCircle } from "react-icons/ai";
-import styles from "@/assets/styles/Netflix/Mobile/Header.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useNetflix } from "@/hooks/useNetflix";
+import styles from "@/assets/styles/Netflix/Mobile/Header.module.css";
 
 export const Header = () => {
   const { ref, inView } = useInView({ initialInView: true });

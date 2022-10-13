@@ -51,7 +51,7 @@
 .title {
     font-weight: bold;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -86,6 +86,7 @@
     margin-left: 1rem;
     color: #fff;
     font-weight: 400;
+    font-size: 1.4rem;
 }
 
 .closeButton {

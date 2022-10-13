@@ -40,7 +40,7 @@ export const useRegister = () => {
     setIsLoading(true);
     localStorage.setItem("name", data.nombre);
     console.log(crypto.randomUUID());
-    localStorage.setItem("token", crypto.randomUUID());
+    localStorage.setItem("token", "abcdefghijklmnopqrst");
 
     setTimeout(() => {
       setIsLoading(false);

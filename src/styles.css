@@ -72,3 +72,7 @@ img {
   height: auto;
   display: block;
 }
+
+.animationItem:hover {
+  transform: scale(1.2);
+}

@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 interface Props {
   img: string;
   name: string;
+  browser?: boolean;
 }
-export const Profile = ({ img, name }: Props) => {
+export const Profile = ({ img, name, browser }: Props) => {
   const navigate = useNavigate();
 
   return (
@@ -18,8 +19,10 @@ export const Profile = ({ img, name }: Props) => {
         alt=""
         className={styles.img}
       />
-      <p className={styles.name}>{name}</p>
-      <GiPadlockOpen size={10} color="8c8c8c" />
+      <p className={styles.name} style={{ color: browser ? "gray" : "" }}>
+        {name}
+      </p>
+      <GiPadlockOpen size={browser ? 20 : 10} color="8c8c8c" />
     </div>
   );
 };

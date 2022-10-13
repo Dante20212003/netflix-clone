@@ -1,0 +1,99 @@
+.netflix_banner {
+    background-color: #000;
+    background-image: linear-gradient(rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .4) 5%, rgba(0, 0, 0, 0) 90%, #141414 100%),
+        url('/img/movies/vigilante_2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 73vh;
+}
+
+
+.header {
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+}
+
+.netlix_logo {
+    width: 10rem;
+}
+
+
+.header_actions {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile {
+    width: 4rem;
+    border-radius: .5rem;
+}
+
+.nav {
+    flex: 1;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav a {
+    font-size: 1.4rem;
+    font-weight: 100;
+    color: #e5e5e5;
+    transition: all .3s;
+
+    &:hover {
+        color: gray;
+    }
+}
+
+.enlace {
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #FFF;
+    text-decoration: none;
+}
+
+.headerMain {
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: calc(100% - 20rem);
+    justify-content: flex-end;
+}
+
+.headerMain img {
+    width: 38rem;
+}
+
+.headerMain p {
+    color: #fff;
+    font-size: 1.4rem;
+    width: 38rem;
+}
+
+.buttons {
+    display: flex;
+    gap: 2rem;
+}
+
+.button {
+    border: unset;
+    display: flex;
+    padding: .8rem 2rem;
+    border-radius: .4rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button span {
+    margin-left: 1rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+}

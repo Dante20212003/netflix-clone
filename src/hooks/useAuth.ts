@@ -27,11 +27,10 @@ export const useAuth = () => {
 
   const onLogin = (data: { email: string; password: string }) => {
     setIsLoading(true);
-
     setTimeout(() => {
       setIsLoading(false);
 
-      localStorage.setItem("token", crypto.randomUUID());
+      localStorage.setItem("token", "abcdefghijklmnopqrst");
 
       const user = {
         name: localStorage.name || "User",
@@ -39,11 +38,13 @@ export const useAuth = () => {
       };
 
       dispatch(setLogin(user));
+
       navigate("/selectProfile");
     }, 3000);
   };
 
   const onLogout = () => {
+    document.body.style.overflow = "auto";
     localStorage.clear();
     dispatch(setLogout());
   };

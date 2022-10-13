@@ -1,13 +1,10 @@
-.container {}
-
 .img {
     border-radius: .5rem;
-    width: 11rem;
-    height: 16rem;
     object-fit: cover;
     object-position: center;
-
 }
+
+
 
 .number {
     position: absolute;
@@ -19,7 +16,20 @@
     text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
         1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
     letter-spacing: -1.7rem;
+}
 
+.numeroBrowser {
+    position: absolute;
+    font-size: 20rem;
+    font-weight: bold;
+    bottom: -50px;
+    left: -90px;
+    color: #000;
+    opacity: .5;
+    overflow: unset;
+    text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
+        1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+    letter-spacing: -1.7rem;
 }
 
 .number::before {
@@ -33,8 +43,7 @@
 
 
 .skeleton {
-    width: 11rem;
-    height: 16rem;
+
     display: block;
     background-color: rgba(49, 47, 47, 0.5);
     animation-name: shine;

@@ -22,7 +22,7 @@ export const DrawerMovie = () => {
   } = useSelector((state: RootState) => state.netflix);
   const { onToggleItem } = useNetflix();
   return (
-    <Drawer open={drawerItem} color="#131313" position="bottom">
+    <Drawer open={drawerItem} color="#313131" position="bottom">
       <div className={styles.container}>
         <div className={styles.descriptionContainer}>
           <div className={styles.containerImg}>
@@ -73,11 +73,11 @@ export const DrawerMovie = () => {
       </div>
 
       <div className={styles.footer}>
-        <AiOutlineInfoCircle size={20} color="FFF" />
+        <AiOutlineInfoCircle size={25} color="FFF" />
 
         <p className={styles.flex1}>Episodios e info</p>
 
-        <AiOutlineRight size={15} color="FFF" />
+        <AiOutlineRight size={20} color="FFF" />
       </div>
     </Drawer>
   );

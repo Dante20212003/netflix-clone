@@ -7,12 +7,13 @@ import { FaRandom } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 import styles from "@/assets/styles/Netflix/Mobile/NetflixLayout.module.css";
 import { Modal } from "@/pages/Netflix/components/Modal";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store";
 import Drawer from "@/pages/Netflix/components/Drawer";
 import { Searching } from "@/pages/Netflix/Mobile/views/Searching";
 import { ConfigPage } from "@/pages/Netflix/Mobile/views/ConfigPage";
 import { DrawerMovie } from "@/pages/Netflix/Mobile/views/DrawerMovie";
+import { setDrawerItem } from "@/store/netflix";
 
 export const NetflixLayout = () => {
   const [y, setY] = useState(window.scrollY);
@@ -23,12 +24,15 @@ export const NetflixLayout = () => {
     config,
   } = useSelector((state: RootState) => state.netflix);
 
+  const dispatch = useDispatch<AppDispatch>();
+
   const handleNavigation = useCallback(
     (e: any) => {
       const window = e.currentTarget;
       if (y > window.scrollY) {
         setInScroll(false);
       } else if (y < window.scrollY) {
+        dispatch(setDrawerItem("1"));
         setInScroll(true);
       }
       setY(window.scrollY);

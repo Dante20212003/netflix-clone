@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense } from "react";
+import { useEffect, lazy, Suspense, useState } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
@@ -30,11 +30,15 @@ import ProfileMoPage from "@/pages/Netflix/Mobile/ProfileMoPage";
 import CategoryItemPage from "@/pages/Netflix/Mobile/CategoryItemPage";
 import { NetflixLayout } from "@/layout/NetflixLayout";
 import SearchPage from "@/pages/Netflix/Mobile/SearchPage";
+import { NetflixBrowserLayout } from "@/layout/NetflixBrowserLayout";
+import ProfileBroPage from "@/pages/Netflix/Browser/ProfileBroPage";
 
 const AppRouter = () => {
   const { onCheckToken } = useAuth();
   const { status } = useSelector((state: RootState) => state.auth);
   const location = useLocation();
+
+  const [widthWindow, setWidthWindow] = useState(window.innerWidth);
 
   const { email, password } = useSelector((state: RootState) => state.register);
 
@@ -44,11 +48,21 @@ const AppRouter = () => {
   };
 
   useEffect(() => {
+    function handleResize() {
+      setWidthWindow(window.innerWidth);
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
     if (localStorage.token) onCheckToken();
   }, []);
 
   if (status == "checking") return <CheckingAuth />;
 
+  console.log(widthWindow);
   return (
     <>
       <AnimatePresence mode="wait">
@@ -56,21 +70,35 @@ const AppRouter = () => {
           <Routes location={location} key={location.pathname}>
             {status == "authenticated" ? (
               <>
-                {window.innerWidth > 650 ? (
-                  <Route index element={<HomeBroPage />} />
-                ) : (
-                  <>
-                    <Route path="/" element={<NetflixLayout />}>
-                      <Route index element={<HomeMoPage />} />
-                      <Route
-                        path="/category/:category"
-                        element={<CategoryItemPage />}
-                      />
-                    </Route>
-                    <Route path="/selectProfile" element={<ProfileMoPage />} />
-                    <Route path="/search" element={<SearchPage />} />
-                  </>
-                )}
+                <Route
+                  path="/"
+                  element={
+                    widthWindow > 650 ? (
+                      <NetflixBrowserLayout />
+                    ) : (
+                      <NetflixLayout />
+                    )
+                  }
+                >
+                  <Route
+                    index
+                    element={
+                      widthWindow > 650 ? <HomeBroPage /> : <HomeMoPage />
+                    }
+                  />
+                  <Route
+                    path="/category/:category"
+                    element={<CategoryItemPage />}
+                  />
+                </Route>
+
+                <Route
+                  path="/selectProfile"
+                  element={
+                    widthWindow > 650 ? <ProfileBroPage /> : <ProfileMoPage />
+                  }
+                />
+                <Route path="/search" element={<SearchPage />} />
               </>
             ) : (
               <>

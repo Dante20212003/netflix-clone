@@ -3,22 +3,26 @@ import { moviesTest } from "@/data/moviesTest";
 import { INetflixItem } from "@/models/Netflix";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { MovieItem } from "./MovieItem";
-import "swiper/css";
 import { useInView } from "react-intersection-observer";
 import { useItem } from "@/hooks";
 import { useNetflix } from "@/hooks/useNetflix";
+import { Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
 
 interface Props {
   url?: string;
   special?: boolean;
   offset?: number;
   type?: string;
+  browser?: boolean;
 }
 export const ListMovies = ({
   url = "",
   special,
   offset = 0,
   type = "",
+  browser,
 }: Props) => {
   const { getByCategory, getMovies } = useItem();
   const { onSetItem, onToggleItem } = useNetflix();
@@ -74,12 +78,23 @@ export const ListMovies = ({
     <div ref={ref} style={{ display: "flex" }}>
       <Swiper
         style={{
-          padding: `0 ${special ? "1rem 0 4rem" : "1rem"}`,
+          padding: `0 ${
+            special
+              ? browser
+                ? "10rem 0 10rem"
+                : "1rem 0 4rem"
+              : browser
+              ? "5rem"
+              : "1rem"
+          }`,
           height: "16rem",
         }}
-        slidesPerView="auto"
-        spaceBetween={special ? 40 : 5}
-        grabCursor
+        slidesPerView={browser ? 5 : "auto"}
+        spaceBetween={special ? (browser ? 100 : 40) : 5}
+        navigation={browser}
+        slidesPerGroup={browser ? 5 : undefined}
+        modules={[Navigation]}
+        grabCursor={!browser}
       >
         {data.length == 0 ? (
           [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, i) => (
@@ -98,7 +113,11 @@ export const ListMovies = ({
                   onToggleItem();
                 }}
               >
-                <MovieItem img={movie.img} number={special ? i + 1 : null} />
+                <MovieItem
+                  img={movie.img}
+                  browser={browser}
+                  number={special ? i + 1 : null}
+                />
               </SwiperSlide>
             ))}
           </>
@@ -107,7 +126,7 @@ export const ListMovies = ({
         {limit < maxLimit && !special && (
           <SwiperSlide style={{ width: "11rem" }}>
             <div ref={ref2} style={{ color: "#FFF" }}>
-              <MovieItem />
+              <MovieItem browser={browser} />
             </div>
           </SwiperSlide>
         )}
