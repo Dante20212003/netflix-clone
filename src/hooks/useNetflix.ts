@@ -32,7 +32,7 @@ export const useNetflix = () => {
   };
 
   const onToggleItem = () => {
-    dispatch(setDrawerItem());
+    dispatch(setDrawerItem(""));
   };
 
   const onSetItem = (data: INetflixItem) => {
