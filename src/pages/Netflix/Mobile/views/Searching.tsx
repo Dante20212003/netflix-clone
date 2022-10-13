@@ -32,7 +32,8 @@ export const Searching = () => {
   const ref = useRef<HTMLInputElement>(null);
   const { ref: refItem, inView } = useInView();
 
-  const { onToggleSearch, onToggleConfig } = useNetflix();
+  const { onToggleSearch, onToggleConfig, onSetItem, onToggleItem } =
+    useNetflix();
   const { getDataByName, getByCategory, isLoading, setIsLoading } = useItem();
 
   const getData = async (val: string, setLoading: boolean = true) => {
@@ -149,7 +150,13 @@ export const Searching = () => {
             {valueSearch.length > 0 ? (
               <div className={styles.grid}>
                 {dataSearch.map((item) => (
-                  <div key={item._id}>
+                  <div
+                    key={item._id}
+                    onClick={() => {
+                      onSetItem(item);
+                      onToggleItem();
+                    }}
+                  >
                     <MovieItem img={item.img} />
                   </div>
                 ))}
@@ -165,6 +172,10 @@ export const Searching = () => {
                 <div
                   key={item.netflix_id}
                   className={styles.item_search_container}
+                  onClick={() => {
+                    onSetItem(item);
+                    onToggleItem();
+                  }}
                 >
                   <img
                     className={styles.item_search_img}
